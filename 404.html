@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>YouTube Fullscreen Player</title>
+
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    iframe {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      border: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe
+    id="player"
+    allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+
+  <script>
+    const path = window.location.pathname.replace("/", "");
+    const videoId = path || new URLSearchParams(window.location.search).get("v");
+
+    if (!videoId) {
+      document.body.innerHTML = "";
+    } else {
+      const params = new URLSearchParams({
+        autoplay: "1",
+        mute: "1",
+        controls: "0",
+        loop: "1",
+        playlist: videoId,
+        rel: "0",
+        modestbranding: "1",
+        playsinline: "1",
+        disablekb: "1",
+        fs: "0",
+        iv_load_policy: "3",
+        origin: window.location.origin
+      });
+
+      document.getElementById("player").src =
+        `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?${params.toString()}`;
+    }
+  </script>
+</body>
+</html>
