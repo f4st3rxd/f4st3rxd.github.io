@@ -40,20 +40,20 @@
     if (!videoId) {
       document.body.innerHTML = "";
     } else {
-      const params = new URLSearchParams({
-        autoplay: "1",
-        mute: "1",
-        controls: "1",
-        loop: "1",
-        playlist: videoId,
-        rel: "0",
-        modestbranding: "1",
-        playsinline: "1",
-        disablekb: "1",
-        fs: "0",
-        iv_load_policy: "3",
-        origin: window.location.origin
-      });
+    const params = new URLSearchParams({
+      autoplay: "1",
+      mute: "1",
+      controls: "0",
+      loop: "1",
+      playlist: videoId,
+      rel: "0",
+      modestbranding: "1",
+      playsinline: "1",
+      disablekb: "1",
+      fs: "0",
+      iv_load_policy: "3",
+      origin: window.location.origin
+    });
 
       document.getElementById("player").src =
         `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?${params.toString()}`;
